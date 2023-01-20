@@ -9,6 +9,7 @@ const DEFAULT_THEME_CONFIG: TaskListThemeConfig = {
     checkbox: {
         color: 'var(--ifm-color-primary)',
         shape: 'square',
+        size: 'medium',
     },
 };
 
@@ -24,6 +25,10 @@ export const ThemeConfigSchema = Joi.object<ThemeConfig>({
                 .string()
                 .valid('square', 'circle')
                 .default(DEFAULT_THEME_CONFIG.checkbox.shape),
+            size: Joi
+                .string()
+                .valid('small', 'medium')
+                .default(DEFAULT_THEME_CONFIG.checkbox.size),
         })
             .default(DEFAULT_THEME_CONFIG.checkbox),
     })
