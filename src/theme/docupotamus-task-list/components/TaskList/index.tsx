@@ -10,6 +10,13 @@ const StyledFormGroup = styled(FormGroup)({
     paddingLeft: '1rem',
 });
 
+const StyledFormControlLabel = styled(FormControlLabel)({
+    borderRadius: '0.5rem',
+    '&:hover': {
+        backgroundColor: 'var(--ifm-hover-overlay)',
+    },
+});
+
 // Copied from: https://github.com/facebook/docusaurus/blob/a308fb7c81832cca354192fe2984f52749441249/packages/docusaurus-theme-classic/src/theme/CodeBlock/index.tsx#L20
 const stringifyChildren = (children: React.ReactNode): string => {
     const hasElement =
@@ -43,7 +50,7 @@ export default function TaskList(
     return (
         <StyledFormGroup>
             {labels.map((label, i) =>
-                <FormControlLabel
+                <StyledFormControlLabel
                     // If items are modified, update how the key is generated.
                     key={`taskItem-${i}`}
                     control={<Checkbox />}
