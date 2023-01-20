@@ -11,7 +11,10 @@ interface Props extends LinearProgressProps {
 
 export default function LinearProgress(props: Props): JSX.Element {
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{
+            display: 'flex',
+            alignItems: 'center',
+        }}>
             <Box sx={{ width: '100%', mr: 1 }}>
                 <MuiLinearProgress variant="determinate" {...props} />
             </Box>
