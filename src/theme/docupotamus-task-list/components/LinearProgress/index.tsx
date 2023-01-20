@@ -26,8 +26,6 @@ interface Props {
 
 export default function LinearProgress({ progress }: Props): JSX.Element {
     return (
-        <Box sx={{ width: '100%' }}>
-            <LinearProgressWithLabel value={progress} />
-        </Box>
+        <LinearProgressWithLabel value={progress} />
     );
 }
