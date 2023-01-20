@@ -61,7 +61,7 @@ export default function TaskList(
         children: rawChildren,
     }: Props,
 ): JSX.Element {
-    const { checkboxShape } = useThemeConfig();
+    const { checkbox: { shape } } = useThemeConfig();
 
     const [labels, setLabels] = React.useState<string[]>([]);
     const [isCheckeds, setIsCheckeds] = React.useState<boolean[]>([]);
@@ -82,15 +82,15 @@ export default function TaskList(
     };
 
     React.useEffect(() => {
-        if (checkboxShape === 'circle') {
+        if (shape === 'circle') {
             setIconChecked(<CircleCheckedFilled />);
             setIconNotChecked(<CircleUnchecked />);
         }
-        if (checkboxShape === 'square') {
+        if (shape === 'square') {
             setIconChecked(<CheckBoxIcon />);
             setIconNotChecked(<CheckBoxOutlineBlankIcon />);
         }
-    }, [checkboxShape]);
+    }, [shape]);
 
     React.useEffect(() => {
         const children = stringifyChildren(rawChildren);
