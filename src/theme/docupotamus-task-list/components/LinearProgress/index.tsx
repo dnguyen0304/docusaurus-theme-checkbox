@@ -20,7 +20,11 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
     );
 }
 
-export default function LinearProgress({ progress }) {
+interface Props {
+    readonly progress: number;
+};
+
+export default function LinearProgress({ progress }: Props): JSX.Element {
     return (
         <Box sx={{ width: '100%' }}>
             <LinearProgressWithLabel value={progress} />
