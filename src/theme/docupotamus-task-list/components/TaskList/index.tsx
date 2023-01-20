@@ -32,7 +32,7 @@ interface Props {
 
 export default function TaskList(
     {
-        children: rawChildren,
+        children,
     }: Props,
 ): JSX.Element {
     const [labels, setLabels] = React.useState<string[]>([]);
@@ -48,9 +48,9 @@ export default function TaskList(
     }, [isCheckedCount]);
 
     React.useEffect(() => {
-        const children = stringifyChildren(rawChildren);
+        const stringified = stringifyChildren(children);
         const newLabels =
-            children
+            stringified
                 .split(DELIMITER)
                 .filter(item => item.length);
         setLabels(newLabels);
