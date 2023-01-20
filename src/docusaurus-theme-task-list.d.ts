@@ -7,6 +7,9 @@ declare module '@docusaurus/theme-task-list' {
             readonly shape: CheckboxShape;
             readonly size: CheckboxProps['size'];
         };
+        readonly progressBar: {
+            readonly color: React.CSSProperties['color'];
+        };
     }
 
     type CheckboxShape = 'circle' | 'square';

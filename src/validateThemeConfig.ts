@@ -5,11 +5,16 @@ import type {
 } from '@docusaurus/types';
 import { Joi } from '@docusaurus/utils-validation';
 
+const COLOR_PRIMARY: React.CSSProperties['color'] = 'var(--ifm-color-primary)';
+
 const DEFAULT_THEME_CONFIG: TaskListThemeConfig = {
     checkbox: {
-        color: 'var(--ifm-color-primary)',
+        color: COLOR_PRIMARY,
         shape: 'square',
         size: 'medium',
+    },
+    progressBar: {
+        color: COLOR_PRIMARY,
     },
 };
 
@@ -31,6 +36,12 @@ export const ThemeConfigSchema = Joi.object<ThemeConfig>({
                 .default(DEFAULT_THEME_CONFIG.checkbox.size),
         })
             .default(DEFAULT_THEME_CONFIG.checkbox),
+        progressBar: Joi.object({
+            color: Joi
+                .string()
+                .default(DEFAULT_THEME_CONFIG.progressBar.color),
+        })
+            .default(DEFAULT_THEME_CONFIG.progressBar),
     })
         .label('themeConfig.docupotamusTaskList')
         .default(DEFAULT_THEME_CONFIG),
