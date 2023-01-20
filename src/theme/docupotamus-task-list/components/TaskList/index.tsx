@@ -57,7 +57,7 @@ export default function TaskList(
     }, []);
 
     return (
-        <Box>
+        <Box className='DocupotamusTaskList_layout'>
             <LinearProgress progress={progress} />
             <StyledFormGroup>
                 {labels.map((label, i) => {
