@@ -65,6 +65,7 @@ export default function TaskList(
         checkbox: {
             color,
             shape,
+            size,
         },
     } = useThemeConfig();
 
@@ -123,6 +124,7 @@ export default function TaskList(
                             <Checkbox
                                 icon={iconNotChecked}
                                 checkedIcon={iconChecked}
+                                size={size}
                                 sx={{
                                     color: 'currentColor',
                                     '&.Mui-checked': {
