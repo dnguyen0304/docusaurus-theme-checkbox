@@ -14,8 +14,9 @@ export default function LinearProgress(props: Props): JSX.Element {
         <Box sx={{
             display: 'flex',
             alignItems: 'center',
+            gap: '0.5rem',
         }}>
-            <Box sx={{ width: '100%', mr: 1 }}>
+            <Box sx={{ width: '100%' }}>
                 <MuiLinearProgress variant='determinate' {...props} />
             </Box>
             <Box sx={{ minWidth: 35 }}>
