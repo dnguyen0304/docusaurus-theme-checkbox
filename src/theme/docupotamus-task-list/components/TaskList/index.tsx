@@ -124,7 +124,7 @@ export default function TaskList(
                                 icon={iconNotChecked}
                                 checkedIcon={iconChecked}
                                 sx={{
-                                    color,
+                                    color: 'currentColor',
                                     '&.Mui-checked': {
                                         color,
                                     },
