@@ -57,7 +57,7 @@ export default function TaskList(
     }: Props,
 ): JSX.Element {
     const [labels, setLabels] = React.useState<string[]>([]);
-    const [isChecked, setIsCheckeds] = React.useState<boolean[]>([]);
+    const [isCheckeds, setIsCheckeds] = React.useState<boolean[]>([]);
 
     const createHandleChange = (i: number): onChange => {
         return (() => setIsCheckeds(prev => {
@@ -81,9 +81,9 @@ export default function TaskList(
         <StyledFormGroup>
             {labels.map((label, i) => {
                 const controlledProps =
-                    (i < isChecked.length)
+                    (i < isCheckeds.length)
                         ? {
-                            checked: isChecked[i],
+                            checked: isCheckeds[i],
                             onChange: createHandleChange(i),
                         }
                         : {};
