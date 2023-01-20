@@ -13,29 +13,25 @@ const StyledFormGroup = styled(FormGroup)({
     paddingLeft: '1rem',
 });
 
-interface StyledFormControlLabelProps {
-    readonly checked?: boolean;
-};
-
-const StyledFormControlLabel = styled(FormControlLabel)<
-    StyledFormControlLabelProps
->(({ checked }) => ({
-    ...(checked && { color: 'var(--ifm-color-emphasis-600)' }),
+const StyledFormControlLabel = styled(FormControlLabel)({
     borderRadius: '0.5rem',
     paddingTop: '0.2rem',
     paddingBottom: '0.2rem',
     '&:hover': {
-        ...(!checked && { color: 'var(--ifm-color-primary)' }),
         backgroundColor: 'var(--ifm-hover-overlay)',
+    },
+    '& .Mui-checked + .MuiFormControlLabel-label': {
+        color: 'var(--ifm-color-emphasis-600)',
+        textDecorationLine: 'line-through',
+    },
+    '& :not(.Mui-checked) + .MuiFormControlLabel-label:hover': {
+        color: 'var(--ifm-color-primary)',
         transition:
             `color `
             + `var(--ifm-transition-fast) `
             + `var(--ifm-transition-timing-default)`,
     },
-    '& .MuiFormControlLabel-label': {
-        textDecorationLine: checked ? 'line-through' : 'none',
-    },
-}));
+});
 
 // Copied from: https://github.com/facebook/docusaurus/blob/a308fb7c81832cca354192fe2984f52749441249/packages/docusaurus-theme-classic/src/theme/CodeBlock/index.tsx#L20
 const stringifyChildren = (children: React.ReactNode): string => {
