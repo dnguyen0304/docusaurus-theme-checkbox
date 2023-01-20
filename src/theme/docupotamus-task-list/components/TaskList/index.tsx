@@ -25,6 +25,11 @@ const StyledFormControlLabel = styled(FormControlLabel)<
     paddingBottom: '0.2rem',
     '&:hover': {
         backgroundColor: 'var(--ifm-hover-overlay)',
+        color: 'var(--ifm-color-primary)',
+        transition:
+            `color `
+            + `var(--ifm-transition-fast) `
+            + `var(--ifm-transition-timing-default)`,
     },
     '& .MuiFormControlLabel-label': {
         textDecorationLine: checked ? 'line-through' : 'none',
