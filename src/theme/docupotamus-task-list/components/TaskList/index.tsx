@@ -14,7 +14,7 @@ const StyledFormGroup = styled(FormGroup)({
 });
 
 interface StyledFormControlLabelProps {
-    readonly checked: boolean;
+    readonly checked?: boolean;
 };
 
 const StyledFormControlLabel = styled(FormControlLabel)<
@@ -83,16 +83,25 @@ export default function TaskList(
 
     return (
         <StyledFormGroup>
-            {labels.map((label, i) =>
-                <StyledFormControlLabel
-                    // If items are modified, update how the key is generated.
-                    key={`taskItem-${i}`}
-                    checked={isChecked[i]}
-                    control={<Checkbox />}
-                    label={label}
-                    onChange={createHandleChange(i)}
-                />
-            )}
+            {labels.map((label, i) => {
+                const controlledProps =
+                    (i >= isChecked.length)
+                        ? {
+                            checked: isChecked[i],
+                            onChange: createHandleChange(i),
+                        }
+                        : {};
+                return (
+                    <StyledFormControlLabel
+                        // If items are modified, update how the key is
+                        // generated.
+                        key={`taskItem-${i}`}
+                        control={<Checkbox />}
+                        label={label}
+                        {...controlledProps}
+                    />
+                );
+            })}
         </StyledFormGroup>
     );
 };
