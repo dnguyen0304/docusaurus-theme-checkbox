@@ -25,8 +25,8 @@ const StyledFormControlLabel = styled(FormControlLabel)<
     paddingTop: '0.2rem',
     paddingBottom: '0.2rem',
     '&:hover': {
+        ...(!checked && { color: 'var(--ifm-color-primary)' }),
         backgroundColor: 'var(--ifm-hover-overlay)',
-        color: 'var(--ifm-color-primary)',
         transition:
             `color `
             + `var(--ifm-transition-fast) `
