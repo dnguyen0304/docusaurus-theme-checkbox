@@ -1,8 +1,13 @@
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CircleCheckedFilled from '@mui/icons-material/CheckCircle';
+import CircleUnchecked from '@mui/icons-material/RadioButtonUnchecked';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
+import useThemeConfig from '../../hooks/useThemeConfig';
 
 const DELIMITER: string = '- [ ] ';
 
@@ -56,8 +61,14 @@ export default function TaskList(
         children: rawChildren,
     }: Props,
 ): JSX.Element {
+    const { checkboxShape } = useThemeConfig();
+
     const [labels, setLabels] = React.useState<string[]>([]);
     const [isCheckeds, setIsCheckeds] = React.useState<boolean[]>([]);
+    const [iconChecked, setIconChecked] =
+        React.useState<JSX.Element>(<CheckBoxIcon />);
+    const [iconNotChecked, setIconNotChecked] =
+        React.useState<JSX.Element>(<CheckBoxOutlineBlankIcon />);
 
     const createHandleChange = (i: number): onChange => {
         return (() => setIsCheckeds(prev => {
@@ -69,6 +80,17 @@ export default function TaskList(
             return copied;
         }));
     };
+
+    React.useEffect(() => {
+        if (checkboxShape === 'circle') {
+            setIconChecked(<CircleCheckedFilled />);
+            setIconNotChecked(<CircleUnchecked />);
+        }
+        if (checkboxShape === 'square') {
+            setIconChecked(<CheckBoxIcon />);
+            setIconNotChecked(<CheckBoxOutlineBlankIcon />);
+        }
+    }, [checkboxShape]);
 
     React.useEffect(() => {
         const children = stringifyChildren(rawChildren);
@@ -92,7 +114,12 @@ export default function TaskList(
                         // If items are modified, update how the key is
                         // generated.
                         key={`taskItem-${i}`}
-                        control={<Checkbox />}
+                        control={
+                            <Checkbox
+                                icon={iconNotChecked}
+                                checkedIcon={iconChecked}
+                            />
+                        }
                         label={label}
                         {...controlledProps}
                     />
