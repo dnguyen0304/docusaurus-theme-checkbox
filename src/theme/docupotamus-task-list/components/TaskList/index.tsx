@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import FormGroup from '@mui/material/FormGroup';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
+import useThemeConfig from '../../hooks/useThemeConfig';
 import LinearProgress from '../LinearProgress';
 import TaskItem from './Item';
 
@@ -35,6 +36,12 @@ export default function TaskList(
         children,
     }: Props,
 ): JSX.Element {
+    const {
+        progressBar: {
+            isEnabled: progressBarIsEnabled,
+        },
+    } = useThemeConfig();
+
     const [labels, setLabels] = React.useState<string[]>([]);
     const [progress, setProgress] = React.useState<number>(0);
     const [isCheckedCount, setIsCheckedCount] = React.useState<number>(0);
@@ -58,7 +65,7 @@ export default function TaskList(
 
     return (
         <Box className='DocupotamusTaskList_layout'>
-            <LinearProgress value={progress} />
+            {progressBarIsEnabled && <LinearProgress value={progress} />}
             <StyledFormGroup>
                 {labels.map((label, i) => {
                     return (
