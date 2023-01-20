@@ -7,6 +7,7 @@ import * as React from 'react';
 const DELIMITER: string = '- [ ] ';
 
 const StyledFormGroup = styled(FormGroup)({
+    marginBottom: 'var(--ifm-leading)',
     paddingLeft: '1rem',
 });
 
