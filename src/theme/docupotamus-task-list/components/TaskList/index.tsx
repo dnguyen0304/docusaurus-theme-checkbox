@@ -25,16 +25,16 @@ const StyledFormControlLabel = styled(FormControlLabel)({
     '&:hover': {
         backgroundColor: 'var(--ifm-hover-overlay)',
     },
-    '& .Mui-checked + .MuiFormControlLabel-label': {
-        color: 'var(--ifm-color-emphasis-600)',
-        textDecorationLine: 'line-through',
-    },
-    '& :not(.Mui-checked) + .MuiFormControlLabel-label:hover': {
+    '&:hover :not(.Mui-checked) + .MuiFormControlLabel-label': {
         color: 'var(--ifm-color-primary)',
         transition:
             `color `
             + `var(--ifm-transition-fast) `
             + `var(--ifm-transition-timing-default)`,
+    },
+    '& .Mui-checked + .MuiFormControlLabel-label': {
+        color: 'var(--ifm-color-emphasis-600)',
+        textDecorationLine: 'line-through',
     },
 });
 
