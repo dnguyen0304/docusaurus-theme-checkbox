@@ -85,7 +85,7 @@ export default function TaskList(
         <StyledFormGroup>
             {labels.map((label, i) => {
                 const controlledProps =
-                    (i >= isChecked.length)
+                    (i < isChecked.length)
                         ? {
                             checked: isChecked[i],
                             onChange: createHandleChange(i),
