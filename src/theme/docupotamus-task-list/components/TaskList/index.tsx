@@ -13,14 +13,23 @@ const StyledFormGroup = styled(FormGroup)({
     paddingLeft: '1rem',
 });
 
-const StyledFormControlLabel = styled(FormControlLabel)({
+interface StyledFormControlLabelProps {
+    readonly checked: boolean;
+};
+
+const StyledFormControlLabel = styled(FormControlLabel)<
+    StyledFormControlLabelProps
+>(({ checked }) => ({
     borderRadius: '0.5rem',
     paddingTop: '0.2rem',
     paddingBottom: '0.2rem',
     '&:hover': {
         backgroundColor: 'var(--ifm-hover-overlay)',
     },
-});
+    '& .MuiFormControlLabel-label': {
+        textDecorationLine: checked ? 'line-through' : 'none',
+    },
+}));
 
 // Copied from: https://github.com/facebook/docusaurus/blob/a308fb7c81832cca354192fe2984f52749441249/packages/docusaurus-theme-classic/src/theme/CodeBlock/index.tsx#L20
 const stringifyChildren = (children: React.ReactNode): string => {
