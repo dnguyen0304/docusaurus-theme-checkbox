@@ -5,7 +5,11 @@ import MuiLinearProgress, { LinearProgressProps } from '@mui/material/LinearProg
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
+interface Props extends LinearProgressProps {
+    readonly value: number;
+};
+
+export default function LinearProgress(props: Props): JSX.Element {
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Box sx={{ width: '100%', mr: 1 }}>
@@ -18,14 +22,4 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
             </Box>
         </Box>
     );
-}
-
-interface Props {
-    readonly progress: number;
 };
-
-export default function LinearProgress({ progress }: Props): JSX.Element {
-    return (
-        <LinearProgressWithLabel value={progress} />
-    );
-}
