@@ -7,6 +7,9 @@ import { Joi } from '@docusaurus/utils-validation';
 
 const DEFAULT_THEME_CONFIG: TaskListThemeConfig = {
     checkboxShape: 'square',
+    checkbox: {
+        color: 'var(--ifm-color-primary)',
+    },
 };
 
 // TODO(dnguyen0304): Investigate missing labels.
@@ -17,6 +20,12 @@ export const ThemeConfigSchema = Joi.object<ThemeConfig>({
             .string()
             .valid('square', 'circle')
             .default(DEFAULT_THEME_CONFIG.checkboxShape),
+        checkbox: Joi.object({
+            color: Joi
+                .string()
+                .default(DEFAULT_THEME_CONFIG.checkbox.color),
+        })
+            .default(DEFAULT_THEME_CONFIG.checkbox),
     })
         .label('themeConfig.docupotamusTaskList')
         .default(DEFAULT_THEME_CONFIG),
