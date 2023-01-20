@@ -6,6 +6,8 @@ import * as React from 'react';
 
 const DELIMITER: string = '- [ ] ';
 
+type onChange = (event: React.SyntheticEvent, checked: boolean) => void;
+
 const StyledFormGroup = styled(FormGroup)({
     marginBottom: 'var(--ifm-leading)',
     paddingLeft: '1rem',
@@ -44,10 +46,24 @@ export default function TaskList(
     }: Props,
 ): JSX.Element {
     const [labels, setLabels] = React.useState<string[]>([]);
+    const [isChecked, setIsCheckeds] = React.useState<boolean[]>([]);
+
+    const createHandleChange = (i: number): onChange => {
+        return (() => setIsCheckeds(prev => {
+            if (i >= prev.length) {
+                throw new Error('index out of bounds');
+            }
+            const copied = [...prev];
+            copied[i] = !copied[i];
+            return copied;
+        }));
+    };
 
     React.useEffect(() => {
         const children = stringifyChildren(rawChildren);
-        setLabels(children.split(DELIMITER));
+        const newLabels = children.split(DELIMITER);
+        setLabels(newLabels);
+        setIsCheckeds(Array(newLabels.length).fill(false));
     }, []);
 
     return (
@@ -56,8 +72,10 @@ export default function TaskList(
                 <StyledFormControlLabel
                     // If items are modified, update how the key is generated.
                     key={`taskItem-${i}`}
+                    checked={isChecked[i]}
                     control={<Checkbox />}
                     label={label}
+                    onChange={createHandleChange(i)}
                 />
             )}
         </StyledFormGroup>
