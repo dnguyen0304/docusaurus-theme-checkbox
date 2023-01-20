@@ -2,12 +2,14 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CircleCheckedFilled from '@mui/icons-material/CheckCircle';
 import CircleUnchecked from '@mui/icons-material/RadioButtonUnchecked';
+import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import useThemeConfig from '../../hooks/useThemeConfig';
+import LinearProgress from '../LinearProgress';
 
 const DELIMITER: string = '- [ ] ';
 
@@ -75,6 +77,7 @@ export default function TaskList(
         React.useState<JSX.Element>(<CheckBoxIcon />);
     const [iconNotChecked, setIconNotChecked] =
         React.useState<JSX.Element>(<CheckBoxOutlineBlankIcon />);
+    const [progress, setProgress] = React.useState<number>(0);
 
     const createHandleChange = (i: number): onChange => {
         return (() => setIsCheckeds(prev => {
@@ -99,6 +102,17 @@ export default function TaskList(
     }, [shape]);
 
     React.useEffect(() => {
+        const completed = isCheckeds
+            .map<number>(isChecked => isChecked ? 1 : 0)
+            .reduce(
+                (accumulator, currentValue) => accumulator + currentValue,
+                0,
+            );
+        const total = isCheckeds.length;
+        setProgress(Math.floor(completed / total * 100));
+    }, [isCheckeds]);
+
+    React.useEffect(() => {
         const children = stringifyChildren(rawChildren);
         const newLabels =
             children
@@ -109,38 +123,41 @@ export default function TaskList(
     }, []);
 
     return (
-        <StyledFormGroup>
-            {labels.map((label, i) => {
-                const controlledProps =
-                    (i < isCheckeds.length)
-                        ? {
-                            checked: isCheckeds[i],
-                            onChange: createHandleChange(i),
-                        }
-                        : {};
-                return (
-                    <StyledFormControlLabel
-                        // If items are modified, update how the key is
-                        // generated.
-                        key={`taskItem-${i}`}
-                        control={
-                            <Checkbox
-                                icon={iconNotChecked}
-                                checkedIcon={iconChecked}
-                                size={size}
-                                sx={{
-                                    color: 'currentColor',
-                                    '&.Mui-checked': {
-                                        color,
-                                    },
-                                }}
-                            />
-                        }
-                        label={label}
-                        {...controlledProps}
-                    />
-                );
-            })}
-        </StyledFormGroup>
+        <Box>
+            <LinearProgress progress={progress} />
+            <StyledFormGroup>
+                {labels.map((label, i) => {
+                    const controlledProps =
+                        (i < isCheckeds.length)
+                            ? {
+                                checked: isCheckeds[i],
+                                onChange: createHandleChange(i),
+                            }
+                            : {};
+                    return (
+                        <StyledFormControlLabel
+                            // If items are modified, update how the key is
+                            // generated.
+                            key={`taskItem-${i}`}
+                            control={
+                                <Checkbox
+                                    icon={iconNotChecked}
+                                    checkedIcon={iconChecked}
+                                    size={size}
+                                    sx={{
+                                        color: 'currentColor',
+                                        '&.Mui-checked': {
+                                            color,
+                                        },
+                                    }}
+                                />
+                            }
+                            label={label}
+                            {...controlledProps}
+                        />
+                    );
+                })}
+            </StyledFormGroup>
+        </Box>
     );
 };
