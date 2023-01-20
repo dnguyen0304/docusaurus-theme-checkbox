@@ -20,6 +20,7 @@ interface StyledFormControlLabelProps {
 const StyledFormControlLabel = styled(FormControlLabel)<
     StyledFormControlLabelProps
 >(({ checked }) => ({
+    ...(checked && { color: 'var(--ifm-color-emphasis-600)' }),
     borderRadius: '0.5rem',
     paddingTop: '0.2rem',
     paddingBottom: '0.2rem',
