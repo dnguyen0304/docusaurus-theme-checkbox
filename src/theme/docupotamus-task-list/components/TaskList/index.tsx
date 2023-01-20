@@ -37,8 +37,13 @@ export default function TaskList(
 
     return (
         <FormGroup>
-            {labels.map(label =>
-                <FormControlLabel control={<Checkbox />} label={label} />
+            {labels.map((label, i) =>
+                <FormControlLabel
+                    // If items are modified, update how the key is generated.
+                    key={`taskItem-${i}`}
+                    control={<Checkbox />}
+                    label={label}
+                />
             )}
         </FormGroup>
     );
