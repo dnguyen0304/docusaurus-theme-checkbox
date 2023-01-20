@@ -12,6 +12,8 @@ const StyledFormGroup = styled(FormGroup)({
 
 const StyledFormControlLabel = styled(FormControlLabel)({
     borderRadius: '0.5rem',
+    paddingTop: '0.2rem',
+    paddingBottom: '0.2rem',
     '&:hover': {
         backgroundColor: 'var(--ifm-hover-overlay)',
     },
