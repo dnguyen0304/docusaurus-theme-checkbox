@@ -1,9 +1,14 @@
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
+import { styled } from '@mui/material/styles';
 import * as React from 'react';
 
 const DELIMITER: string = '- [ ] ';
+
+const StyledFormGroup = styled(FormGroup)({
+    paddingLeft: '1rem',
+});
 
 // Copied from: https://github.com/facebook/docusaurus/blob/a308fb7c81832cca354192fe2984f52749441249/packages/docusaurus-theme-classic/src/theme/CodeBlock/index.tsx#L20
 const stringifyChildren = (children: React.ReactNode): string => {
@@ -36,7 +41,7 @@ export default function TaskList(
     }, []);
 
     return (
-        <FormGroup>
+        <StyledFormGroup>
             {labels.map((label, i) =>
                 <FormControlLabel
                     // If items are modified, update how the key is generated.
@@ -45,6 +50,6 @@ export default function TaskList(
                     label={label}
                 />
             )}
-        </FormGroup>
+        </StyledFormGroup>
     );
 };
