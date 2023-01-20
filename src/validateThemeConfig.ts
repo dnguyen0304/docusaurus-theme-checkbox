@@ -5,12 +5,18 @@ import type {
 } from '@docusaurus/types';
 import { Joi } from '@docusaurus/utils-validation';
 
-const DEFAULT_THEME_CONFIG: TaskListThemeConfig = {};
+const DEFAULT_THEME_CONFIG: TaskListThemeConfig = {
+    checkboxShape: 'square',
+};
 
 // TODO(dnguyen0304): Investigate missing labels.
 // TODO(dnguyen0304): Fix incorrect ThemeConfig type.
 export const ThemeConfigSchema = Joi.object<ThemeConfig>({
     docupotamusTaskList: Joi.object({
+        checkboxShape: Joi
+            .string()
+            .valid('square', 'circle')
+            .default(DEFAULT_THEME_CONFIG.checkboxShape),
     })
         .label('themeConfig.docupotamusTaskList')
         .default(DEFAULT_THEME_CONFIG),
