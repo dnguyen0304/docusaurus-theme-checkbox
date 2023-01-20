@@ -33,7 +33,7 @@ export default function LinearProgress(props: Props): JSX.Element {
                     {...props}
                 />
             </Box>
-            <Box sx={{ minWidth: 35 }}>
+            <Box sx={{ minWidth: '10%' }}>
                 <Typography variant='body2' color='text.secondary'>{`${Math.round(
                     props.value,
                 )}%`}</Typography>
