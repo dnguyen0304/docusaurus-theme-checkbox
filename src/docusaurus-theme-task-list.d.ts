@@ -8,6 +8,7 @@ declare module '@docusaurus/theme-task-list' {
             readonly size: CheckboxProps['size'];
         };
         readonly progressBar: {
+            readonly isEnabled: boolean;
             readonly color: React.CSSProperties['color'];
         };
     }

@@ -14,6 +14,7 @@ const DEFAULT_THEME_CONFIG: TaskListThemeConfig = {
         size: 'medium',
     },
     progressBar: {
+        isEnabled: true,
         color: COLOR_PRIMARY,
     },
 };
@@ -37,6 +38,9 @@ export const ThemeConfigSchema = Joi.object<ThemeConfig>({
         })
             .default(DEFAULT_THEME_CONFIG.checkbox),
         progressBar: Joi.object({
+            isEnabled: Joi
+                .boolean()
+                .default(DEFAULT_THEME_CONFIG.progressBar.isEnabled),
             color: Joi
                 .string()
                 .default(DEFAULT_THEME_CONFIG.progressBar.color),
