@@ -100,7 +100,10 @@ export default function TaskList(
 
     React.useEffect(() => {
         const children = stringifyChildren(rawChildren);
-        const newLabels = children.split(DELIMITER);
+        const newLabels =
+            children
+                .split(DELIMITER)
+                .filter(item => item.length);
         setLabels(newLabels);
         setIsCheckeds(Array(newLabels.length).fill(false));
     }, []);
