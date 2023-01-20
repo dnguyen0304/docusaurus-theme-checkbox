@@ -61,7 +61,12 @@ export default function TaskList(
         children: rawChildren,
     }: Props,
 ): JSX.Element {
-    const { checkbox: { shape } } = useThemeConfig();
+    const {
+        checkbox: {
+            color,
+            shape,
+        },
+    } = useThemeConfig();
 
     const [labels, setLabels] = React.useState<string[]>([]);
     const [isCheckeds, setIsCheckeds] = React.useState<boolean[]>([]);
@@ -118,6 +123,12 @@ export default function TaskList(
                             <Checkbox
                                 icon={iconNotChecked}
                                 checkedIcon={iconChecked}
+                                sx={{
+                                    color,
+                                    '&.Mui-checked': {
+                                        color,
+                                    },
+                                }}
                             />
                         }
                         label={label}
