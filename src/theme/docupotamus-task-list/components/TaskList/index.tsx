@@ -10,7 +10,6 @@ const DELIMITER: string = '- [ ] ';
 
 const StyledFormGroup = styled(FormGroup)({
     marginBottom: 'var(--ifm-leading)',
-    paddingLeft: '1rem',
 });
 
 // Copied from: https://github.com/facebook/docusaurus/blob/a308fb7c81832cca354192fe2984f52749441249/packages/docusaurus-theme-classic/src/theme/CodeBlock/index.tsx#L20
@@ -74,7 +73,7 @@ export default function TaskList(
             }}
         >
             {progressBarIsEnabled && <LinearProgress value={progress} />}
-            <StyledFormGroup>
+            <StyledFormGroup sx={{ paddingLeft: '1rem' }}>
                 {labels.map((label, i) => {
                     return (
                         <TaskItem
