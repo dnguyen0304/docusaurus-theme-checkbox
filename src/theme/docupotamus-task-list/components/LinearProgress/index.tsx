@@ -1,5 +1,3 @@
-// Copied from: https://mui.com/material-ui/react-progress/#linear-with-label
-
 import Box from '@mui/material/Box';
 import MuiLinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
