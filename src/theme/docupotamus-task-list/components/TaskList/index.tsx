@@ -1,16 +1,11 @@
 import Box from '@mui/material/Box';
 import FormGroup from '@mui/material/FormGroup';
-import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import useThemeConfig from '../../hooks/useThemeConfig';
 import LinearProgress from '../LinearProgress';
 import TaskItem from './Item';
 
 const DELIMITER: string = '- [ ] ';
-
-const StyledFormGroup = styled(FormGroup)({
-    marginBottom: 'var(--ifm-leading)',
-});
 
 // Copied from: https://github.com/facebook/docusaurus/blob/a308fb7c81832cca354192fe2984f52749441249/packages/docusaurus-theme-classic/src/theme/CodeBlock/index.tsx#L20
 const stringifyChildren = (children: React.ReactNode): string => {
@@ -70,10 +65,11 @@ export default function TaskList(
                 flexDirection: 'column',
                 gap: '0.5rem',
                 marginTop: 'var(--ifm-leading)',
+                marginBottom: 'var(--ifm-leading)',
             }}
         >
             {progressBarIsEnabled && <LinearProgress value={progress} />}
-            <StyledFormGroup sx={{ paddingLeft: '1rem' }}>
+            <FormGroup sx={{ paddingLeft: '1rem' }}>
                 {labels.map((label, i) => {
                     return (
                         <TaskItem
@@ -85,7 +81,7 @@ export default function TaskList(
                         />
                     );
                 })}
-            </StyledFormGroup>
+            </FormGroup>
         </Box>
     );
 };
