@@ -64,7 +64,15 @@ export default function TaskList(
     }, []);
 
     return (
-        <Box className='DocupotamusTaskList_layout'>
+        <Box
+            className='DocupotamusTaskList_layout'
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.5rem',
+                marginTop: 'var(--ifm-leading)',
+            }}
+        >
             {progressBarIsEnabled && <LinearProgress value={progress} />}
             <StyledFormGroup>
                 {labels.map((label, i) => {
