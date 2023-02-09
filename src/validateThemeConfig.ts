@@ -5,6 +5,12 @@ import type {
 } from '@docusaurus/types';
 import { Joi } from '@docusaurus/utils-validation';
 
+declare module '@docusaurus/types' {
+    interface ThemeConfig {
+        docupotamusTaskList: TaskListThemeConfig;
+    }
+};
+
 const COLOR_PRIMARY: React.CSSProperties['color'] = 'var(--ifm-color-primary)';
 
 const DEFAULT_THEME_CONFIG: TaskListThemeConfig = {
