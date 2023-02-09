@@ -1,10 +1,10 @@
 import type { Plugin } from '@docusaurus/types';
 
 export default function themeTaskList(): Plugin<undefined> {
-    const name = 'docupotamus-theme-task-list';
+    const name = 'task-list';
 
     return {
-        name,
+        name: `docupotamus-theme-${name}`,
 
         getThemePath() {
             return '../lib/theme';
