@@ -1,1 +1,1 @@
-export { default as TaskList } from '../../theme/docupotamus-task-list/components/TaskList';
+export { default as TaskList } from '../../theme/package/components/TaskList';
