@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box';
 import MuiLinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import useTaskListThemeConfig from '../../hooks/useTaskListThemeConfig';
 
@@ -20,6 +19,13 @@ const StyledBox = styled(Box, {
         backgroundColor: barColor,
     },
 }));
+
+const StyledText = styled('p')({
+    minWidth: '10%',
+
+    fontSize: 'var(--font-size--2)',
+    margin: 0,
+});
 
 interface Props extends LinearProgressProps {
     readonly value: number;
@@ -47,11 +53,9 @@ export default function LinearProgress(props: Props): JSX.Element {
                     {...props}
                 />
             </StyledBox>
-            <Box sx={{ minWidth: '10%' }}>
-                <Typography variant='body2'>
-                    {`${Math.round(props.value)}%`}
-                </Typography>
-            </Box>
+            <StyledText>
+                {`${Math.round(props.value)}%`}
+            </StyledText>
         </Box>
     );
 };
