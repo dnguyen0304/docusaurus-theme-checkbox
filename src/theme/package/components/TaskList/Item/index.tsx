@@ -85,8 +85,8 @@ export default function TaskList(
                     size={size}
                     sx={{
                         color: 'currentColor',
-                        '&.Mui-checked': {
-                            color,
+                        '&.Mui-checked .MuiSvgIcon-root': {
+                            fill: `${color}`,
                         },
                     }}
                 />
