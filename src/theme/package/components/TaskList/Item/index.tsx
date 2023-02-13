@@ -9,7 +9,7 @@ import * as React from 'react';
 import useTaskListThemeConfig from '../../../hooks/useTaskListThemeConfig';
 
 const StyledFormControlLabel = styled(FormControlLabel)({
-    borderRadius: '0.5rem',
+    borderRadius: 'var(--space-3xs-2xs)',
     paddingTop: '0.2rem',
     paddingBottom: '0.2rem',
     '&:hover': {
