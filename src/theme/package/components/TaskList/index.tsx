@@ -1,11 +1,25 @@
 import Box from '@mui/material/Box';
 import FormGroup from '@mui/material/FormGroup';
+import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import useTaskListThemeConfig from '../../hooks/useTaskListThemeConfig';
 import LinearProgress from '../LinearProgress';
 import TaskItem from './Item';
 
 const DELIMITER: string = '- [ ] ';
+
+const StyledBox = styled(Box)({
+    '&.MuiBox-root': {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'var(--space-3xs-2xs)',
+        marginTop: 'var(--ifm-leading)',
+        marginBottom: 'var(--ifm-leading)',
+    },
+    '&.MuiBox-root .MuiFormGroup-root': {
+        paddingLeft: 'var(--space-xs)',
+    },
+});
 
 // Copied from: https://github.com/facebook/docusaurus/blob/a308fb7c81832cca354192fe2984f52749441249/packages/docusaurus-theme-classic/src/theme/CodeBlock/index.tsx#L20
 const stringifyChildren = (children: React.ReactNode): string => {
@@ -58,18 +72,9 @@ export default function TaskList(
     }, []);
 
     return (
-        <Box
-            className='DocupotamusTaskList_layout'
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 'var(--space-3xs-2xs)',
-                marginTop: 'var(--ifm-leading)',
-                marginBottom: 'var(--ifm-leading)',
-            }}
-        >
+        <StyledBox className='DocupotamusTaskList_layout'>
             {progressBarIsEnabled && <LinearProgress value={progress} />}
-            <FormGroup sx={{ paddingLeft: 'var(--space-xs)' }}>
+            <FormGroup>
                 {labels.map((label, i) => {
                     return (
                         <TaskItem
@@ -82,6 +87,6 @@ export default function TaskList(
                     );
                 })}
             </FormGroup>
-        </Box>
+        </StyledBox>
     );
 };
