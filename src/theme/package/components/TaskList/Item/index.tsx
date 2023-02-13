@@ -15,6 +15,9 @@ const StyledFormControlLabel = styled(FormControlLabel)({
     '&:hover': {
         backgroundColor: 'var(--ifm-hover-overlay)',
     },
+    '& .MuiFormControlLabel-label': {
+        fontFamily: 'inherit',
+    },
     '&:hover :not(.Mui-checked) + .MuiFormControlLabel-label': {
         color: 'var(--ifm-color-primary)',
         transition:
@@ -23,7 +26,7 @@ const StyledFormControlLabel = styled(FormControlLabel)({
             + `var(--ifm-transition-timing-default)`,
     },
     '& .Mui-checked + .MuiFormControlLabel-label': {
-        color: 'var(--ifm-color-emphasis-600)',
+        opacity: 0.5,
         textDecorationLine: 'line-through',
     },
 });
