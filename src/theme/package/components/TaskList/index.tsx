@@ -19,6 +19,9 @@ const StyledBox = styled(Box)({
     '&.MuiBox-root .MuiFormGroup-root': {
         paddingLeft: 'var(--space-xs)',
     },
+    '& .MuiFormControlLabel-root + .MuiFormControlLabel-root': {
+        marginTop: 'var(--list-item-gap-2xs)',
+    },
 });
 
 // Copied from: https://github.com/facebook/docusaurus/blob/a308fb7c81832cca354192fe2984f52749441249/packages/docusaurus-theme-classic/src/theme/CodeBlock/index.tsx#L20
