@@ -6,7 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
-import useThemeConfig from '../../../hooks/useThemeConfig';
+import useTaskListThemeConfig from '../../../hooks/useTaskListThemeConfig';
 
 const StyledFormControlLabel = styled(FormControlLabel)({
     borderRadius: '0.5rem',
@@ -44,7 +44,7 @@ export default function TaskList(
             shape,
             size,
         },
-    } = useThemeConfig();
+    } = useTaskListThemeConfig();
 
     const [isChecked, setIsChecked] = React.useState<boolean>(false);
     const [iconChecked, setIconChecked] =

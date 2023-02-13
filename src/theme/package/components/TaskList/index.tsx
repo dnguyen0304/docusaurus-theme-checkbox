@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import FormGroup from '@mui/material/FormGroup';
 import * as React from 'react';
-import useThemeConfig from '../../hooks/useThemeConfig';
+import useTaskListThemeConfig from '../../hooks/useTaskListThemeConfig';
 import LinearProgress from '../LinearProgress';
 import TaskItem from './Item';
 
@@ -34,7 +34,7 @@ export default function TaskList(
         progressBar: {
             isEnabled: progressBarIsEnabled,
         },
-    } = useThemeConfig();
+    } = useTaskListThemeConfig();
 
     const [labels, setLabels] = React.useState<string[]>([]);
     const [progress, setProgress] = React.useState<number>(0);
