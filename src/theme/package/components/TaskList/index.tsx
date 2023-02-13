@@ -63,13 +63,13 @@ export default function TaskList(
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '0.5rem',
+                gap: 'var(--space-3xs-2xs)',
                 marginTop: 'var(--ifm-leading)',
                 marginBottom: 'var(--ifm-leading)',
             }}
         >
             {progressBarIsEnabled && <LinearProgress value={progress} />}
-            <FormGroup sx={{ paddingLeft: '1rem' }}>
+            <FormGroup sx={{ paddingLeft: 'var(--space-xs)' }}>
                 {labels.map((label, i) => {
                     return (
                         <TaskItem
