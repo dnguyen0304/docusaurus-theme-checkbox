@@ -12,12 +12,12 @@ const StyledBox = styled(Box)({
     '&.MuiBox-root': {
         display: 'flex',
         flexDirection: 'column',
-        gap: 'var(--space-3xs-2xs)',
+        gap: 'var(--d9s-space-3xs-2xs)',
         marginTop: 'var(--ifm-leading)',
         marginBottom: 'var(--ifm-leading)',
     },
     '&.MuiBox-root .MuiFormGroup-root': {
-        paddingLeft: 'var(--space-xs)',
+        paddingLeft: 'var(--d9s-space-xs)',
     },
     '& .MuiFormControlLabel-root + .MuiFormControlLabel-root': {
         marginTop: 'var(--d9s-list-item-gap-2xs)',
