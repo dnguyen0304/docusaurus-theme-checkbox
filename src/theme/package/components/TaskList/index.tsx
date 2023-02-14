@@ -20,7 +20,7 @@ const StyledBox = styled(Box)({
         paddingLeft: 'var(--space-xs)',
     },
     '& .MuiFormControlLabel-root + .MuiFormControlLabel-root': {
-        marginTop: 'var(--list-item-gap-2xs)',
+        marginTop: 'var(--d9s-list-item-gap-2xs)',
     },
 });
 
