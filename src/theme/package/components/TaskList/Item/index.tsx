@@ -11,6 +11,7 @@ import useTaskListThemeConfig from '../../../hooks/useTaskListThemeConfig';
 const StyledFormControlLabel = styled(FormControlLabel)({
     borderRadius: 'var(--d9s-space-3xs-2xs)',
     padding: '0.2rem 0.7rem 0.2rem 0.5rem',
+    transition: 'var(--ifm-hover-overlay-transition)',
     '&:hover': {
         backgroundColor: 'var(--ifm-hover-overlay)',
     },
@@ -19,10 +20,6 @@ const StyledFormControlLabel = styled(FormControlLabel)({
     },
     '&:hover :not(.Mui-checked) + .MuiFormControlLabel-label': {
         color: 'var(--ifm-color-primary)',
-        transition:
-            `color `
-            + `var(--ifm-transition-fast) `
-            + `var(--ifm-transition-timing-default)`,
     },
     '& .Mui-checked + .MuiFormControlLabel-label': {
         opacity: 0.5,
