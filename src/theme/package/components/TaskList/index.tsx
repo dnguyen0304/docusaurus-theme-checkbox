@@ -6,6 +6,7 @@ import useTaskListThemeConfig from '../../hooks/useTaskListThemeConfig';
 import LinearProgress from '../LinearProgress';
 import TaskItem from './Item';
 import WorkbenchButton from './WorkbenchButton';
+import styles from './WorkbenchButton/styles.module.css';
 
 const DELIMITER: string = '- [ ] ';
 
@@ -19,21 +20,9 @@ const StyledBox = styled(Box)({
         marginTop: 'var(--ifm-leading)',
         marginBottom: 'var(--ifm-leading)',
     },
-    '&.MuiBox-root .MuiIconButton-root': {
-        position: 'absolute',
-        top: '50%',
-        right: '0',
-
-        opacity: 0,
-        translate: '100% -50%',
-        visibility: 'hidden',
-    },
-    '&.MuiBox-root:hover .MuiIconButton-root': {
+    [`&.MuiBox-root:hover .${styles.WorkbenchButton_layout}`]: {
         opacity: 1,
         visibility: 'visible',
-    },
-    '&.MuiBox-root .MuiIconButton-root .MuiSvgIcon-root': {
-        fontSize: 'inherit',
     },
     '&.MuiBox-root .MuiFormGroup-root': {
         paddingLeft: 'var(--d9s-space-xs)',
