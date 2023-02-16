@@ -5,16 +5,29 @@ import * as React from 'react';
 import useTaskListThemeConfig from '../../hooks/useTaskListThemeConfig';
 import LinearProgress from '../LinearProgress';
 import TaskItem from './Item';
+import WorkbenchButton from './WorkbenchButton';
 
 const DELIMITER: string = '- [ ] ';
 
 const StyledBox = styled(Box)({
+    position: 'relative',
+
     '&.MuiBox-root': {
         display: 'flex',
         flexDirection: 'column',
         gap: 'var(--d9s-space-3xs-2xs)',
         marginTop: 'var(--ifm-leading)',
         marginBottom: 'var(--ifm-leading)',
+    },
+    '&.MuiBox-root .MuiIconButton-root': {
+        position: 'absolute',
+        top: '50%',
+        right: '0',
+
+        translate: '100% -50%',
+    },
+    '&.MuiBox-root .MuiIconButton-root .MuiSvgIcon-root': {
+        fontSize: 'inherit',
     },
     '&.MuiBox-root .MuiFormGroup-root': {
         paddingLeft: 'var(--d9s-space-xs)',
@@ -90,6 +103,7 @@ export default function TaskList(
                     );
                 })}
             </FormGroup>
+            <WorkbenchButton />
         </StyledBox>
     );
 };
