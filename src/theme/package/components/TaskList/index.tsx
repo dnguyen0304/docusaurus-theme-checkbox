@@ -24,7 +24,13 @@ const StyledBox = styled(Box)({
         top: '50%',
         right: '0',
 
+        opacity: 0,
         translate: '100% -50%',
+        visibility: 'hidden',
+    },
+    '&.MuiBox-root:hover .MuiIconButton-root': {
+        opacity: 1,
+        visibility: 'visible',
     },
     '&.MuiBox-root .MuiIconButton-root .MuiSvgIcon-root': {
         fontSize: 'inherit',
