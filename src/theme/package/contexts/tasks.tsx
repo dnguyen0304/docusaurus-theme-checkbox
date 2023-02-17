@@ -36,7 +36,7 @@ const reducer = (
     //     throw new Error('index out of bounds');
     // }
     if (action.type === 'setTaskList') {
-        const taskListData = prev.get(action.path) ?? [];
+        const taskListData = newMapping.get(action.path) ?? [];
         taskListData.push({
             items: action.labels.map(label => ({
                 label,
