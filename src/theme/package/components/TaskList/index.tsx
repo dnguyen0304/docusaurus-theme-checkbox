@@ -1,8 +1,22 @@
 import { useLocation } from '@docusaurus/router';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import { useTasks } from '../../contexts/tasks';
 import useLabelsParsed from '../../hooks/useLabelsParsed';
 import List from './List';
+import WorkbenchButton from './WorkbenchButton';
+import styles from './WorkbenchButton/styles.module.css';
+// import WorkbenchTab from './WorkbenchTab';
+
+const Layout = styled(Box)({
+    position: 'relative',
+
+    [`&.MuiBox-root:hover .${styles.WorkbenchButton_layout}`]: {
+        opacity: 1,
+        visibility: 'visible',
+    },
+});
 
 interface Props {
     readonly children: React.ReactNode;
@@ -34,9 +48,15 @@ export default function TaskList(
     }, [labels]);
 
     return (
-        <List
-            path={location.pathname}
-            taskListId={taskListId}
-        />
+        // <>
+        <Layout>
+            <List
+                path={location.pathname}
+                taskListId={taskListId}
+            />
+            <WorkbenchButton />
+        </Layout>
+        // <WorkbenchTab />
+        // </>
     );
 };
