@@ -31,7 +31,7 @@ interface Props extends Pick<FormControlLabelProps, 'label'> {
     readonly setIsCheckedCount: React.Dispatch<React.SetStateAction<number>>
 };
 
-export default function TaskList(
+export default function Item(
     {
         label,
         setIsCheckedCount,
