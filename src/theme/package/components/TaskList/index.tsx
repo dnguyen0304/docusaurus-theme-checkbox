@@ -1,36 +1,7 @@
-import Box from '@mui/material/Box';
-import FormGroup from '@mui/material/FormGroup';
-import { styled } from '@mui/material/styles';
 import * as React from 'react';
-import useTaskListThemeConfig from '../../hooks/useTaskListThemeConfig';
-import LinearProgress from '../LinearProgress';
-import TaskItem from './Item';
-import WorkbenchButton from './WorkbenchButton';
-import styles from './WorkbenchButton/styles.module.css';
+import List from './List';
 
 const DELIMITER: string = '- [ ] ';
-
-const StyledBox = styled(Box)({
-    position: 'relative',
-
-    '&.MuiBox-root': {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--d9s-space-3xs-2xs)',
-        marginTop: 'var(--ifm-leading)',
-        marginBottom: 'var(--ifm-leading)',
-    },
-    [`&.MuiBox-root:hover .${styles.WorkbenchButton_layout}`]: {
-        opacity: 1,
-        visibility: 'visible',
-    },
-    '&.MuiBox-root .MuiFormGroup-root': {
-        paddingLeft: 'var(--d9s-space-xs)',
-    },
-    '& .MuiFormControlLabel-root + .MuiFormControlLabel-root': {
-        marginTop: 'var(--d9s-list-item-gap-2xs)',
-    },
-});
 
 // Copied from: https://github.com/facebook/docusaurus/blob/a308fb7c81832cca354192fe2984f52749441249/packages/docusaurus-theme-classic/src/theme/CodeBlock/index.tsx#L20
 const stringifyChildren = (children: React.ReactNode): string => {
@@ -55,23 +26,7 @@ export default function TaskList(
         children,
     }: Props,
 ): JSX.Element {
-    const {
-        progressBar: {
-            isEnabled: progressBarIsEnabled,
-        },
-    } = useTaskListThemeConfig();
-
     const [labels, setLabels] = React.useState<string[]>([]);
-    const [progress, setProgress] = React.useState<number>(0);
-    const [isCheckedCount, setIsCheckedCount] = React.useState<number>(0);
-
-    React.useEffect(() => {
-        const newProgress =
-            (labels.length)
-                ? Math.floor(isCheckedCount / labels.length * 100)
-                : 0;
-        setProgress(newProgress);
-    }, [isCheckedCount]);
 
     React.useEffect(() => {
         const stringified = stringifyChildren(children);
@@ -83,22 +38,6 @@ export default function TaskList(
     }, []);
 
     return (
-        <StyledBox className='DocupotamusTaskList_layout'>
-            {progressBarIsEnabled && <LinearProgress value={progress} />}
-            <FormGroup>
-                {labels.map((label, i) => {
-                    return (
-                        <TaskItem
-                            // If items are modified, update how the key is
-                            // generated.
-                            key={`taskItem-${i}`}
-                            label={label}
-                            setIsCheckedCount={setIsCheckedCount}
-                        />
-                    );
-                })}
-            </FormGroup>
-            <WorkbenchButton />
-        </StyledBox>
+        <List labels={labels} />
     );
 };
