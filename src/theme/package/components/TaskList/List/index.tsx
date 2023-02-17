@@ -65,20 +65,19 @@ export default function List(
         <StyledBox className='DocupotamusTaskList_layout'>
             {progressBarIsEnabled && <LinearProgress value={progress} />}
             <FormGroup>
-                {taskItemsData.map(({ label, isChecked }, i) => {
-                    console.log(`${isChecked} ${label}`)
+                {taskItemsData.map(({ label, isChecked }, itemIndex) => {
                     return (
                         <Item
                             // If items are modified, update how the key is
                             // generated.
-                            key={`taskItem-${i}`}
+                            key={`taskItem-${itemIndex}`}
                             label={label}
                             isChecked={isChecked}
                             setIsChecked={(newValue: boolean) => dispatchTasks({
                                 type: 'setIsChecked',
                                 path,
                                 taskListId,
-                                itemIndex: i,
+                                itemIndex,
                                 newValue,
                             })}
                             setIsCheckedCount={setIsCheckedCount}
