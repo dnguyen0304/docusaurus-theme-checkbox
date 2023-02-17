@@ -9,7 +9,9 @@ export default function WorkbenchButton(): JSX.Element {
     return (
         <Box className={styles.WorkbenchButton_layout}>
             <Tooltip
-                placement='top'
+                // Use a placement that does not overlap components with a hover
+                // behavior.
+                placement='right'
                 title='Open in Workbench'
             >
                 <IconButton
