@@ -6,7 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
-import useTaskListThemeConfig from '../../../hooks/useTaskListThemeConfig';
+import useTaskListThemeConfig from '../../../../hooks/useTaskListThemeConfig';
 
 const StyledFormControlLabel = styled(FormControlLabel)({
     borderRadius: 'var(--d9s-space-3xs-2xs)',

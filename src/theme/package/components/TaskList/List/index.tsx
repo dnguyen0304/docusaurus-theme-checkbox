@@ -3,10 +3,10 @@ import FormGroup from '@mui/material/FormGroup';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import useTaskListThemeConfig from '../../../hooks/useTaskListThemeConfig';
-import TaskItem from '../Item';
 import LinearProgress from '../LinearProgress';
 import WorkbenchButton from '../WorkbenchButton';
 import styles from '../WorkbenchButton/styles.module.css';
+import Item from './Item';
 
 const StyledBox = styled(Box)({
     position: 'relative',
@@ -62,7 +62,7 @@ export default function List(
             <FormGroup>
                 {labels.map((label, i) => {
                     return (
-                        <TaskItem
+                        <Item
                             // If items are modified, update how the key is
                             // generated.
                             key={`taskItem-${i}`}
