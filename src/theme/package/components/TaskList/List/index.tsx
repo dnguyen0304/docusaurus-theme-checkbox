@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import FormGroup from '@mui/material/FormGroup';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
-import { useTaskItems } from '../../../contexts/tasks';
+import { useTaskItems, useTasks } from '../../../contexts/tasks';
 import useTaskListThemeConfig from '../../../hooks/useTaskListThemeConfig';
 import WorkbenchButton from '../WorkbenchButton';
 import styles from '../WorkbenchButton/styles.module.css';
@@ -47,6 +47,7 @@ export default function List(
             isEnabled: progressBarIsEnabled,
         },
     } = useTaskListThemeConfig();
+    const { dispatchTasks } = useTasks();
     const taskItemsData = useTaskItems(path, taskListId);
 
     const [progress, setProgress] = React.useState<number>(0);
@@ -64,13 +65,22 @@ export default function List(
         <StyledBox className='DocupotamusTaskList_layout'>
             {progressBarIsEnabled && <LinearProgress value={progress} />}
             <FormGroup>
-                {taskItemsData.map(({ label }, i) => {
+                {taskItemsData.map(({ label, isChecked }, i) => {
+                    console.log(`${isChecked} ${label}`)
                     return (
                         <Item
                             // If items are modified, update how the key is
                             // generated.
                             key={`taskItem-${i}`}
                             label={label}
+                            isChecked={isChecked}
+                            setIsChecked={(newValue: boolean) => dispatchTasks({
+                                type: 'setIsChecked',
+                                path,
+                                taskListId,
+                                itemIndex: i,
+                                newValue,
+                            })}
                             setIsCheckedCount={setIsCheckedCount}
                         />
                     );

@@ -28,12 +28,16 @@ const StyledFormControlLabel = styled(FormControlLabel)({
 });
 
 interface Props extends Pick<FormControlLabelProps, 'label'> {
-    readonly setIsCheckedCount: React.Dispatch<React.SetStateAction<number>>
+    readonly isChecked: boolean;
+    readonly setIsChecked: (newValue: boolean) => void;
+    readonly setIsCheckedCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export default function Item(
     {
         label,
+        isChecked,
+        setIsChecked,
         setIsCheckedCount,
     }: Props,
 ): JSX.Element {
@@ -45,22 +49,19 @@ export default function Item(
         },
     } = useTaskListThemeConfig();
 
-    const [isChecked, setIsChecked] = React.useState<boolean>(false);
     const [iconChecked, setIconChecked] =
         React.useState<JSX.Element>(<CheckBoxIcon />);
     const [iconNotChecked, setIconNotChecked] =
         React.useState<JSX.Element>(<CheckBoxOutlineBlankIcon />);
 
     const handleChange = () => {
-        setIsChecked(prev => {
-            const newIsChecked = !prev;
-            if (newIsChecked) {
-                setIsCheckedCount(prev => prev + 1);
-            } else {
-                setIsCheckedCount(prev => prev > 0 ? prev - 1 : 0);
-            }
-            return newIsChecked;
-        });
+        const newIsChecked = !isChecked;
+        if (newIsChecked) {
+            setIsCheckedCount(prev => prev + 1);
+        } else {
+            setIsCheckedCount(prev => prev > 0 ? prev - 1 : 0);
+        }
+        setIsChecked(newIsChecked);
     };
 
     React.useEffect(() => {
