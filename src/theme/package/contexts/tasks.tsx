@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { ReactContextError } from './errors';
 
+interface TaskItemData {
+    readonly label: string;
+    isChecked: boolean;
+}
+
 interface TaskListData {
-    readonly items: {
-        readonly label: string;
-        readonly isChecked: boolean;
-    }[];
+    readonly items: TaskItemData[];
 }
 
 interface PathToTaskListData extends Map<string, TaskListData[]> { };
