@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import MuiLinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
-import useTaskListThemeConfig from '../../../hooks/useTaskListThemeConfig';
+import useTaskListThemeConfig from '../../../../hooks/useTaskListThemeConfig';
 
 interface StyledBoxProps {
     readonly barColor: React.CSSProperties['color'];
