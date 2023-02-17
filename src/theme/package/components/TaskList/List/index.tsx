@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import FormGroup from '@mui/material/FormGroup';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
+import { useTaskItems } from '../../../contexts/tasks';
 import useTaskListThemeConfig from '../../../hooks/useTaskListThemeConfig';
 import WorkbenchButton from '../WorkbenchButton';
 import styles from '../WorkbenchButton/styles.module.css';
@@ -31,14 +32,14 @@ const StyledBox = styled(Box)({
 });
 
 interface Props {
-    readonly id: string;
-    readonly labels: string[];
+    readonly path: string;
+    readonly taskListId: string;
 };
 
 export default function List(
     {
-        id,
-        labels,
+        path,
+        taskListId,
     }: Props,
 ): JSX.Element {
     const {
@@ -46,14 +47,15 @@ export default function List(
             isEnabled: progressBarIsEnabled,
         },
     } = useTaskListThemeConfig();
+    const taskItemsData = useTaskItems(path, taskListId);
 
     const [progress, setProgress] = React.useState<number>(0);
     const [isCheckedCount, setIsCheckedCount] = React.useState<number>(0);
 
     React.useEffect(() => {
         const newProgress =
-            (labels.length)
-                ? Math.floor(isCheckedCount / labels.length * 100)
+            (taskItemsData.length)
+                ? Math.floor(isCheckedCount / taskItemsData.length * 100)
                 : 0;
         setProgress(newProgress);
     }, [isCheckedCount]);
@@ -62,7 +64,7 @@ export default function List(
         <StyledBox className='DocupotamusTaskList_layout'>
             {progressBarIsEnabled && <LinearProgress value={progress} />}
             <FormGroup>
-                {labels.map((label, i) => {
+                {taskItemsData.map(({ label }, i) => {
                     return (
                         <Item
                             // If items are modified, update how the key is

@@ -35,8 +35,8 @@ export default function TaskList(
 
     return (
         <List
-            id={taskListId}
-            labels={labels}
+            path={location.pathname}
+            taskListId={taskListId}
         />
     );
 };
