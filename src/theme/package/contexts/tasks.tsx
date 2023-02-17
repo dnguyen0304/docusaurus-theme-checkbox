@@ -17,6 +17,13 @@ type Action =
         type: 'setTaskList';
         path: string;
         labels: string[];
+    }
+    | {
+        type: 'setIsChecked';
+        path: string;
+        taskListIndex: number;
+        itemIndex: number;
+        newValue: boolean;
     };
 
 const reducer = (
@@ -37,6 +44,14 @@ const reducer = (
             }))
         });
         newMapping.set(action.path, taskListData);
+    }
+    if (action.type === 'setIsChecked') {
+        const taskLists = newMapping.get(action.path) ?? [];
+        const taskList = taskLists[action.taskListIndex] ?? { items: [] };
+        const taskItem = taskList.items[action.itemIndex];
+        if (taskItem) {
+            taskItem.isChecked = action.newValue;
+        }
     }
     return newMapping;
 };
