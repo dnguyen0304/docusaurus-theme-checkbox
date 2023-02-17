@@ -31,11 +31,13 @@ const StyledBox = styled(Box)({
 });
 
 interface Props {
+    readonly id: string;
     readonly labels: string[];
 };
 
 export default function List(
     {
+        id,
         labels,
     }: Props,
 ): JSX.Element {

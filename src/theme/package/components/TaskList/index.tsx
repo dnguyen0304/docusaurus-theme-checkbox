@@ -17,18 +17,26 @@ export default function TaskList(
     const location = useLocation();
     const { dispatchTasks } = useTasks();
 
+    const [taskListId, setTaskListId] = React.useState<string>('');
+
     React.useEffect(() => {
         if (!labels.length) {
             return;
         }
+        const newTaskListId = crypto.randomUUID();
+        setTaskListId(newTaskListId);
         dispatchTasks({
             type: 'setTaskList',
             path: location.pathname,
+            taskListId: newTaskListId,
             labels,
         });
     }, [labels]);
 
     return (
-        <List labels={labels} />
+        <List
+            id={taskListId}
+            labels={labels}
+        />
     );
 };

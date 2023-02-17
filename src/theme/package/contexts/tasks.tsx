@@ -10,44 +10,48 @@ interface TaskListData {
     readonly items: TaskItemData[];
 }
 
-interface PathToTaskListData extends Map<string, TaskListData[]> { };
+// locationPath to taskListId to taskList
+interface KeyedTaskListData extends Map<string, Map<string, TaskListData>> { };
 
 type Action =
     | {
         type: 'setTaskList';
         path: string;
+        taskListId: string;
         labels: string[];
     }
     | {
         type: 'setIsChecked';
         path: string;
-        taskListIndex: number;
+        taskListId: string;
         itemIndex: number;
         newValue: boolean;
     };
 
 const reducer = (
-    prev: PathToTaskListData,
+    prev: KeyedTaskListData,
     action: Action,
-): PathToTaskListData => {
+): KeyedTaskListData => {
     const newMapping = new Map(prev);
     // const oldShortcut = newShortcuts[action.index];
     // if (!oldShortcut) {
     //     throw new Error('index out of bounds');
     // }
     if (action.type === 'setTaskList') {
-        const taskListData = newMapping.get(action.path) ?? [];
-        taskListData.push({
+        if (!newMapping.has(action.path)) {
+            newMapping.set(action.path, new Map<string, TaskListData>());
+        }
+        newMapping.get(action.path)?.set(action.taskListId, {
             items: action.labels.map(label => ({
                 label,
                 isChecked: false,
             }))
         });
-        newMapping.set(action.path, taskListData);
     }
     if (action.type === 'setIsChecked') {
-        const taskLists = newMapping.get(action.path) ?? [];
-        const taskList = taskLists[action.taskListIndex] ?? { items: [] };
+        const idToTaskList =
+            newMapping.get(action.path) ?? new Map<string, TaskListData>();
+        const taskList = idToTaskList.get(action.taskListId) ?? { items: [] };
         const taskItem = taskList.items[action.itemIndex];
         if (taskItem) {
             taskItem.isChecked = action.newValue;
@@ -57,7 +61,7 @@ const reducer = (
 };
 
 interface ContextValue {
-    readonly tasks: PathToTaskListData;
+    readonly tasks: KeyedTaskListData;
     readonly dispatchTasks: React.Dispatch<Action>;
 };
 
