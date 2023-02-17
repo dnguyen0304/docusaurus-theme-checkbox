@@ -3,8 +3,8 @@ import FormGroup from '@mui/material/FormGroup';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import useTaskListThemeConfig from '../../../hooks/useTaskListThemeConfig';
-import LinearProgress from '../../LinearProgress';
 import TaskItem from '../Item';
+import LinearProgress from '../LinearProgress';
 import WorkbenchButton from '../WorkbenchButton';
 import styles from '../WorkbenchButton/styles.module.css';
 
