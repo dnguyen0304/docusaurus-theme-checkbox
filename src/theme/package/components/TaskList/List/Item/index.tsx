@@ -30,7 +30,6 @@ const StyledFormControlLabel = styled(FormControlLabel)({
 interface Props extends Pick<FormControlLabelProps, 'label'> {
     readonly isChecked: boolean;
     readonly setIsChecked: (newValue: boolean) => void;
-    readonly setIsCheckedCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export default function Item(
@@ -38,7 +37,6 @@ export default function Item(
         label,
         isChecked,
         setIsChecked,
-        setIsCheckedCount,
     }: Props,
 ): JSX.Element {
     const {
@@ -53,16 +51,6 @@ export default function Item(
         React.useState<JSX.Element>(<CheckBoxIcon />);
     const [iconNotChecked, setIconNotChecked] =
         React.useState<JSX.Element>(<CheckBoxOutlineBlankIcon />);
-
-    const handleChange = () => {
-        const newIsChecked = !isChecked;
-        if (newIsChecked) {
-            setIsCheckedCount(prev => prev + 1);
-        } else {
-            setIsCheckedCount(prev => prev > 0 ? prev - 1 : 0);
-        }
-        setIsChecked(newIsChecked);
-    };
 
     React.useEffect(() => {
         if (shape === 'circle') {
@@ -92,7 +80,7 @@ export default function Item(
                 />
             }
             label={label}
-            onChange={handleChange}
+            onChange={() => setIsChecked(!isChecked)}
         />
     );
 };

@@ -103,11 +103,3 @@ export const useTasks = (): ContextValue => {
     }
     return context;
 };
-
-export const useTaskItems = (
-    path: string,
-    taskListId: string,
-): TaskItemData[] => {
-    const { tasks } = useTasks();
-    return tasks.get(path)?.get(taskListId)?.items ?? [];
-};

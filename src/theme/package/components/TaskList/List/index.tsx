@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import FormGroup from '@mui/material/FormGroup';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
-import { useTaskItems, useTasks } from '../../../contexts/tasks';
+import { useTasks } from '../../../contexts/tasks';
 import useTaskListThemeConfig from '../../../hooks/useTaskListThemeConfig';
 import Item from './Item';
 import LinearProgress from './LinearProgress';
@@ -42,19 +42,23 @@ export default function List(
             isEnabled: progressBarIsEnabled,
         },
     } = useTaskListThemeConfig();
-    const { dispatchTasks } = useTasks();
-    const taskItemsData = useTaskItems(path, taskListId);
+    const { tasks, dispatchTasks } = useTasks();
 
     const [progress, setProgress] = React.useState<number>(0);
-    const [isCheckedCount, setIsCheckedCount] = React.useState<number>(0);
+
+    const taskItemsData = tasks.get(path)?.get(taskListId)?.items ?? [];
 
     React.useEffect(() => {
+        const isCheckedCount = taskItemsData
+            .map(x => x.isChecked)
+            .filter(Boolean)
+            .length;
         const newProgress =
             (taskItemsData.length)
                 ? Math.floor(isCheckedCount / taskItemsData.length * 100)
                 : 0;
         setProgress(newProgress);
-    }, [isCheckedCount]);
+    }, [tasks]);
 
     return (
         <StyledBox className='DocupotamusTaskList_layout'>
@@ -75,7 +79,6 @@ export default function List(
                                 itemIndex,
                                 newValue,
                             })}
-                            setIsCheckedCount={setIsCheckedCount}
                         />
                     );
                 })}
