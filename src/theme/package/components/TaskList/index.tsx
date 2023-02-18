@@ -7,7 +7,6 @@ import useLabelsParsed from '../../hooks/useLabelsParsed';
 import List from './List';
 import WorkbenchButton from './WorkbenchButton';
 import styles from './WorkbenchButton/styles.module.css';
-// import WorkbenchTab from './WorkbenchTab';
 
 const Layout = styled(Box)({
     position: 'relative',
@@ -48,7 +47,6 @@ export default function TaskList(
     }, [labels]);
 
     return (
-        // <>
         <Layout>
             <List
                 path={location.pathname}
@@ -56,7 +54,5 @@ export default function TaskList(
             />
             <WorkbenchButton />
         </Layout>
-        // <WorkbenchTab />
-        // </>
     );
 };
