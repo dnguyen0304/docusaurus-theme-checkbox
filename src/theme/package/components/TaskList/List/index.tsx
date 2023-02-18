@@ -34,7 +34,6 @@ export default function List(
     {
         path,
         taskListId,
-
     }: Props,
 ): JSX.Element {
     const {
