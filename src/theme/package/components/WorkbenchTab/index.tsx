@@ -1,4 +1,7 @@
-import type { KeyMap as KeyMapType } from '@docusaurus/theme-task-list';
+import type {
+    KeyHandlers as KeyHandlersType,
+    KeyMap as KeyMapType
+} from '@docusaurus/theme-task-list';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import { HotKeys } from 'react-hotkeys';
@@ -41,19 +44,32 @@ export default function WorkbenchTab(): JSX.Element {
     const [tabIndex, setTabIndex] = React.useState<number>(0);
     const [tabIndexMax, setTabIndexMax] = React.useState<number>(0);
 
+    const handlePreviousClick = () => {
+        setTabIndex(prev => (prev === 0) ? prev : prev - 1);
+    };
+
+    const handleNextClick = () => {
+        setTabIndex(prev => (prev === tabIndexMax) ? prev : prev + 1);
+    };
+
+    const handlers: KeyHandlersType = {
+        TAB_PREVIOUS: handlePreviousClick,
+        TAB_NEXT: handleNextClick,
+    };
+
     React.useEffect(() => {
         setTabIndexMax(taskListIds.length - 1);
     }, [taskListIds]);
 
     return (
-        <Layout keyMap={keyMap}>
+        <Layout keyMap={keyMap} handlers={handlers}>
             <Tabs
                 taskListIds={taskListIds}
                 tabIndex={tabIndex}
             />
             <ButtonGroup
-                setTabIndex={setTabIndex}
-                tabIndexMax={tabIndexMax}
+                onPreviousClick={handlePreviousClick}
+                onNextClick={handleNextClick}
             />
         </Layout>
     );
