@@ -8,13 +8,9 @@ import Tooltip from '@mui/material/Tooltip';
 import * as React from 'react';
 
 const Layout = styled(Box)({
-    // width: '100%',
-
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-
-    // padding: 'var(--d9s-space-m)',
 });
 
 interface Props {
