@@ -11,22 +11,41 @@ const ClippingBox = styled(Box)({
     overflowX: 'hidden',
 });
 
-const Layout = styled(Box)({
+interface LayoutProps {
+    tabIndex: number;
+}
+
+const Layout = styled(Box, {
+    shouldForwardProp: (prop) => prop !== 'tabIndex'
+})<LayoutProps>(({ tabIndex }) => ({
     display: 'grid',
     gridAutoFlow: 'column',
     gridAutoColumns: '100%',
-});
+
+    translate: `calc(-100% * ${tabIndex}) 0`,
+    transition: `
+        translate
+        var(--ifm-transition-fast)
+        var(--ifm-transition-timing-default)
+    `,
+}));
 
 interface Props {
     readonly taskListIds: string[];
+    readonly tabIndex: number;
 }
 
-export default function Tabs({ taskListIds }: Props): JSX.Element {
+export default function Tabs(
+    {
+        taskListIds,
+        tabIndex,
+    }: Props
+): JSX.Element {
     const location = useLocation();
 
     return (
         <ClippingBox>
-            <Layout>
+            <Layout tabIndex={tabIndex}>
                 {taskListIds.map(taskListId => {
                     return (
                         <List
