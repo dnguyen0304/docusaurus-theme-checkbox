@@ -5,11 +5,17 @@ import * as React from 'react';
 import { useTasks } from '../../../contexts/tasks';
 import List from '../../TaskList/List';
 
-const Layout = styled(Box)({
+const ClippingBox = styled(Box)({
+    width: '100%',
     flexGrow: 1,
 
-    display: 'flex',
-    flexDirection: 'row',
+    overflowX: 'hidden',
+});
+
+const Layout = styled(Box)({
+    display: 'grid',
+    gridAutoFlow: 'column',
+    gridAutoColumns: '100%',
 });
 
 export default function WorkbenchTab(): JSX.Element {
@@ -17,18 +23,20 @@ export default function WorkbenchTab(): JSX.Element {
     const { tasks } = useTasks();
 
     return (
-        <Layout>
-            {Array
-                .from(tasks.get(location.pathname)?.keys() ?? [])
-                .map(taskListId => {
-                    return (
-                        <List
-                            path={location.pathname}
-                            taskListId={taskListId}
-                        />
-                    );
-                })
-            }
-        </Layout>
+        <ClippingBox>
+            <Layout>
+                {Array
+                    .from(tasks.get(location.pathname)?.keys() ?? [])
+                    .map(taskListId => {
+                        return (
+                            <List
+                                path={location.pathname}
+                                taskListId={taskListId}
+                            />
+                        );
+                    })
+                }
+            </Layout>
+        </ClippingBox>
     );
 };
