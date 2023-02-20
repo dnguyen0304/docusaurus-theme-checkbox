@@ -1,13 +1,14 @@
+import type { KeyHandlers as KeyHandlersType } from '@docusaurus/theme-task-list';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import TagOutlinedIcon from '@mui/icons-material/TagOutlined';
-import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import * as React from 'react';
+import { HotKeys } from 'react-hotkeys';
 
-const Layout = styled(Box)({
+const Layout = styled(HotKeys)({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -32,8 +33,13 @@ export default function ButtonGroup(
         setTabIndex(prev => (prev === tabIndexMax) ? prev : prev + 1);
     };
 
+    const handlers: KeyHandlersType = {
+        TAB_PREVIOUS: handlePreviousClick,
+        TAB_NEXT: handleNextClick,
+    };
+
     return (
-        <Layout>
+        <Layout handlers={handlers}>
             <Tooltip
                 placement='top-start'
                 title='Previous Task List'

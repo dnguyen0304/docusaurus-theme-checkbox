@@ -1,11 +1,17 @@
-import Box from '@mui/material/Box';
+import type { KeyMap as KeyMapType } from '@docusaurus/theme-task-list';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
+import { HotKeys } from 'react-hotkeys';
 import { useTasks } from '../../contexts/tasks';
 import ButtonGroup from './ButtonGroup';
 import Tabs from './Tabs';
 
-const Layout = styled(Box)({
+const keyMap: KeyMapType = {
+    TAB_PREVIOUS: 'left',
+    TAB_NEXT: 'right',
+};
+
+const Layout = styled(HotKeys)({
     height: '100%',
 
     display: 'flex',
@@ -40,7 +46,7 @@ export default function WorkbenchTab(): JSX.Element {
     }, [taskListIds]);
 
     return (
-        <Layout>
+        <Layout keyMap={keyMap}>
             <Tabs
                 taskListIds={taskListIds}
                 tabIndex={tabIndex}
