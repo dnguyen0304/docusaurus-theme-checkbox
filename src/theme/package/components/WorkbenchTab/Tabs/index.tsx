@@ -13,7 +13,7 @@ const ClippingBox = styled(Box)({
 
 interface LayoutProps {
     tabIndex: number;
-}
+};
 
 const Layout = styled(Box, {
     shouldForwardProp: (prop) => prop !== 'tabIndex'
@@ -36,7 +36,7 @@ const Layout = styled(Box, {
 interface Props {
     readonly taskListIds: string[];
     readonly tabIndex: number;
-}
+};
 
 export default function Tabs(
     {
