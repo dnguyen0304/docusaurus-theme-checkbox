@@ -13,7 +13,7 @@ const Layout = styled(Box)({
     flexDirection: 'column',
     justifyContent: 'center',
 
-    color: 'var(--tl-color-base)',
+    color: 'var(--tl-workbench-color-base)',
     padding: 'var(--d9s-space-m)',
 });
 
