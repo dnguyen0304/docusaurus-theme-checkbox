@@ -33,10 +33,6 @@ const reducer = (
     action: Action,
 ): KeyedTaskListData => {
     const newMapping = new Map(prev);
-    // const oldShortcut = newShortcuts[action.index];
-    // if (!oldShortcut) {
-    //     throw new Error('index out of bounds');
-    // }
     if (action.type === 'setTaskList') {
         if (!newMapping.has(action.path)) {
             newMapping.set(action.path, new Map<string, TaskListData>());
