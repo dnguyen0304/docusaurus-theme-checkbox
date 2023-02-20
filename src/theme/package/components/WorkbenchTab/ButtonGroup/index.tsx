@@ -17,7 +17,25 @@ const Layout = styled(Box)({
     // padding: 'var(--d9s-space-m)',
 });
 
-export default function ButtonGroup(): JSX.Element {
+interface Props {
+    readonly setTabIndex: React.Dispatch<React.SetStateAction<number>>;
+    readonly tabIndexMax: number;
+}
+
+export default function ButtonGroup(
+    {
+        setTabIndex,
+        tabIndexMax,
+    }: Props
+): JSX.Element {
+    const handlePreviousClick = () => {
+        setTabIndex(prev => (prev === 0) ? prev : prev - 1);
+    };
+
+    const handleNextClick = () => {
+        setTabIndex(prev => (prev === tabIndexMax) ? prev : prev + 1);
+    };
+
     return (
         <Layout>
             <Tooltip
@@ -26,7 +44,7 @@ export default function ButtonGroup(): JSX.Element {
             >
                 <IconButton
                     aria-label='previous task list'
-                    onClick={() => console.log('Not Yet Implemented')}
+                    onClick={handlePreviousClick}
                     color='inherit'
                 >
                     <KeyboardArrowLeftOutlinedIcon />
@@ -50,7 +68,7 @@ export default function ButtonGroup(): JSX.Element {
             >
                 <IconButton
                     aria-label='next task list'
-                    onClick={() => console.log('Not Yet Implemented')}
+                    onClick={handleNextClick}
                     color='inherit'
                 >
                     <KeyboardArrowRightOutlinedIcon />

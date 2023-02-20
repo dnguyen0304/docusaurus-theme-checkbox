@@ -32,10 +32,23 @@ const useTaskListIds = (): string[] => {
 export default function WorkbenchTab(): JSX.Element {
     const taskListIds = useTaskListIds();
 
+    const [tabIndex, setTabIndex] = React.useState<number>(0);
+    const [tabIndexMax, setTabIndexMax] = React.useState<number>(0);
+
+    React.useEffect(() => {
+        setTabIndexMax(taskListIds.length - 1);
+    }, [taskListIds]);
+
     return (
         <Layout>
-            <Tabs taskListIds={taskListIds} />
-            <ButtonGroup />
+            <Tabs
+                taskListIds={taskListIds}
+                tabIndex={tabIndex}
+            />
+            <ButtonGroup
+                setTabIndex={setTabIndex}
+                tabIndexMax={tabIndexMax}
+            />
         </Layout>
     );
 };
