@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import { useTasks } from '../../contexts/tasks';
 import List from '../TaskList/List';
+import ButtonGroup from './ButtonGroup';
 
 const Layout = styled(Box)({
     height: '100%',
@@ -12,6 +13,7 @@ const Layout = styled(Box)({
     flexDirection: 'column',
     justifyContent: 'center',
 
+    color: 'var(--tl-color-base)',
     padding: 'var(--d9s-space-m)',
 });
 
@@ -32,6 +34,7 @@ export default function WorkbenchTab(): JSX.Element {
                     );
                 })
             }
+            <ButtonGroup />
         </Layout>
     );
 };

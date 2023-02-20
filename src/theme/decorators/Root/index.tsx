@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { TasksProvider } from '../../package/contexts/tasks';
+import '../../package/styles.css';
 
 interface Props {
     readonly children: React.ReactNode;
