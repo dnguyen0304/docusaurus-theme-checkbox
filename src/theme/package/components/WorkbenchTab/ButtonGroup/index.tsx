@@ -28,7 +28,8 @@ export default function ButtonGroup(
         <Layout>
             <Tooltip
                 placement='top-start'
-                title='Previous Task List'
+                // Do not use kbd because it makes the font too small.
+                title={<>(&larr;) Previous Task List</>}
             >
                 <IconButton
                     aria-label='previous task list'
@@ -52,7 +53,8 @@ export default function ButtonGroup(
             </Tooltip>
             <Tooltip
                 placement='top-end'
-                title='Next Task List'
+                // Do not use kbd because it makes the font too small.
+                title={<>Next Task List (&rarr;)</>}
             >
                 <IconButton
                     aria-label='next task list'
