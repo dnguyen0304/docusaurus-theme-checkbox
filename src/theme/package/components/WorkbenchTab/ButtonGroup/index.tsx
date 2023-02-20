@@ -16,12 +16,14 @@ const Layout = styled(Box)({
 interface Props {
     readonly onPreviousClick: () => void;
     readonly onNextClick: () => void;
+    readonly onScrollToClick: () => void;
 }
 
 export default function ButtonGroup(
     {
         onPreviousClick,
         onNextClick,
+        onScrollToClick,
     }: Props
 ): JSX.Element {
     return (
@@ -45,7 +47,7 @@ export default function ButtonGroup(
             >
                 <IconButton
                     aria-label='scroll to task list'
-                    onClick={() => console.log('Not Yet Implemented')}
+                    onClick={onScrollToClick}
                     color='inherit'
                 >
                     <TagOutlinedIcon sx={{ transform: 'skewX(-10deg)' }} />

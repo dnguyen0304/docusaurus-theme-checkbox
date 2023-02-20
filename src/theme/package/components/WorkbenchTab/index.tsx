@@ -52,6 +52,17 @@ export default function WorkbenchTab(): JSX.Element {
         setTabIndex(prev => (prev === tabIndexMax) ? prev : prev + 1);
     };
 
+    // TODO(dnguyen0304): Fix missing SSR defensive coding.
+    // TODO(dnguyen0304): Investigate caching the elements.
+    const handleScrollToClick = () => {
+        document
+            .querySelectorAll('.DocupotamusTaskList_layout')[tabIndex]
+            ?.scrollIntoView({
+                block: 'center',
+                behavior: 'smooth',
+            });
+    };
+
     const handlers: KeyHandlersType = {
         TAB_PREVIOUS: handlePreviousClick,
         TAB_NEXT: handleNextClick,
@@ -72,6 +83,7 @@ export default function WorkbenchTab(): JSX.Element {
             <ButtonGroup
                 onPreviousClick={handlePreviousClick}
                 onNextClick={handleNextClick}
+                onScrollToClick={handleScrollToClick}
             />
         </Layout>
     );
