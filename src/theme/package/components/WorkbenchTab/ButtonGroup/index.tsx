@@ -35,8 +35,8 @@ export default function ButtonGroup(
             >
                 <IconButton
                     aria-label='previous task list'
-                    onClick={onPreviousClick}
                     color='inherit'
+                    onClick={onPreviousClick}
                 >
                     <KeyboardArrowLeftOutlinedIcon />
                 </IconButton>
@@ -47,8 +47,8 @@ export default function ButtonGroup(
             >
                 <IconButton
                     aria-label='scroll to task list'
-                    onClick={onScrollToClick}
                     color='inherit'
+                    onClick={onScrollToClick}
                 >
                     <TagOutlinedIcon sx={{ transform: 'skewX(-10deg)' }} />
                 </IconButton>
@@ -60,8 +60,8 @@ export default function ButtonGroup(
             >
                 <IconButton
                     aria-label='next task list'
-                    onClick={onNextClick}
                     color='inherit'
+                    onClick={onNextClick}
                 >
                     <KeyboardArrowRightOutlinedIcon />
                 </IconButton>
