@@ -13,6 +13,7 @@ const Layout = styled(Box)({
 
     color: 'var(--tl-workbench-color-base)',
     padding: 'var(--d9s-space-m)',
+    paddingBottom: 'var(--d9s-space-xs)',
 });
 
 export default function WorkbenchTab(): JSX.Element {

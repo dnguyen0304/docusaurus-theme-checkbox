@@ -6,6 +6,8 @@ import { useTasks } from '../../../contexts/tasks';
 import List from '../../TaskList/List';
 
 const Layout = styled(Box)({
+    flexGrow: 1,
+
     display: 'flex',
     flexDirection: 'row',
 });
