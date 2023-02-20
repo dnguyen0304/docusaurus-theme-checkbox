@@ -21,7 +21,7 @@ interface Props {
     readonly taskListIds: string[];
 }
 
-export default function WorkbenchTab({ taskListIds }: Props): JSX.Element {
+export default function Tabs({ taskListIds }: Props): JSX.Element {
     const location = useLocation();
 
     return (
