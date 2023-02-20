@@ -17,7 +17,7 @@ const Layout = styled(Box)({
     paddingBottom: 'var(--d9s-space-xs)',
 });
 
-export default function WorkbenchTab(): JSX.Element {
+const useTaskListIds = (): string[] => {
     const { tasks } = useTasks();
 
     const [taskListIds, setTaskListIds] = React.useState<string[]>([]);
@@ -25,6 +25,12 @@ export default function WorkbenchTab(): JSX.Element {
     React.useEffect(() => {
         setTaskListIds(Array.from(tasks.get(location.pathname)?.keys() ?? []));
     }, [tasks]);
+
+    return taskListIds;
+};
+
+export default function WorkbenchTab(): JSX.Element {
+    const taskListIds = useTaskListIds();
 
     return (
         <Layout>
