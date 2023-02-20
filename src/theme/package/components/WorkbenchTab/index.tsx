@@ -62,6 +62,8 @@ export default function WorkbenchTab(): JSX.Element {
     }, [taskListIds]);
 
     return (
+        // TODO(dnguyen0304): Fix keyboard shortcuts for task items, possibly
+        //   because of focus.
         <Layout keyMap={keyMap} handlers={handlers}>
             <Tabs
                 taskListIds={taskListIds}
