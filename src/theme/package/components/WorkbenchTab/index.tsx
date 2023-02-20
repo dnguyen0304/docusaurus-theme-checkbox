@@ -5,6 +5,7 @@ import type {
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import { HotKeys } from 'react-hotkeys';
+import { CLASS_NAME } from '../../components/TaskList/List';
 import { useTasks } from '../../contexts/tasks';
 import ButtonGroup from './ButtonGroup';
 import Tabs from './Tabs';
@@ -56,7 +57,7 @@ export default function WorkbenchTab(): JSX.Element {
     // TODO(dnguyen0304): Investigate caching the elements.
     const handleScrollToClick = () => {
         document
-            .querySelectorAll('.DocupotamusTaskList_layout')[tabIndex]
+            .querySelectorAll(`.${CLASS_NAME}`)[tabIndex]
             ?.scrollIntoView({
                 block: 'center',
                 behavior: 'smooth',

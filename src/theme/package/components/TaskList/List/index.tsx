@@ -7,6 +7,8 @@ import useTaskListThemeConfig from '../../../hooks/useTaskListThemeConfig';
 import Item from './Item';
 import LinearProgress from './LinearProgress';
 
+export const CLASS_NAME: string = 'DocupotamusTaskList_layout';
+
 const StyledBox = styled(Box)({
     position: 'relative',
 
@@ -60,7 +62,7 @@ export default function List(
     }, [tasks]);
 
     return (
-        <StyledBox className='DocupotamusTaskList_layout'>
+        <StyledBox className={CLASS_NAME}>
             {progressBarIsEnabled && <LinearProgress value={progress} />}
             <FormGroup>
                 {taskItemsData.map(({ label, isChecked }, itemIndex) => {
