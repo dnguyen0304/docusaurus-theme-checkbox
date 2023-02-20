@@ -18,9 +18,12 @@ interface LayoutProps {
 const Layout = styled(Box, {
     shouldForwardProp: (prop) => prop !== 'tabIndex'
 })<LayoutProps>(({ tabIndex }) => ({
+    height: '100%',
+
     display: 'grid',
     gridAutoFlow: 'column',
     gridAutoColumns: '100%',
+    alignItems: 'center',
 
     translate: `calc(-100% * ${tabIndex}) 0`,
     transition: `
