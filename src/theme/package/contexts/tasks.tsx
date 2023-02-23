@@ -4,11 +4,11 @@ import { ReactContextError } from './errors';
 interface TaskItemData {
     readonly label: string;
     isChecked: boolean;
-}
+};
 
 interface TaskListData {
     readonly items: TaskItemData[];
-}
+};
 
 // locationPath to taskListId to taskList
 interface KeyedTaskListData extends Map<string, Map<string, TaskListData>> { };
