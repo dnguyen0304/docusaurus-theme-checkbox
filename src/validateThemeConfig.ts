@@ -26,7 +26,6 @@ const DEFAULT_THEME_CONFIG: TaskListThemeConfig = {
 };
 
 // TODO(dnguyen0304): Investigate missing labels.
-// TODO(dnguyen0304): Fix incorrect ThemeConfig type.
 export const ThemeConfigSchema = Joi.object<ThemeConfig>({
     docupotamusTaskList: Joi.object({
         checkbox: Joi.object({
