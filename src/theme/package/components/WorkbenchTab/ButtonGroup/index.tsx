@@ -17,7 +17,7 @@ interface Props {
     readonly onPreviousClick: () => void;
     readonly onNextClick: () => void;
     readonly onScrollToClick: () => void;
-}
+};
 
 export default function ButtonGroup(
     {
